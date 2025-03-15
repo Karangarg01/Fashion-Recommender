@@ -18,12 +18,17 @@ CLOUDINARY_BASE_URL = "https://res.cloudinary.com/dg1m6ud6y/image/upload/"
 # Load embeddings and filenames
 @st.cache_resource
 def load_embeddings():
+    if not os.path.exists("embeddings.pkl") or not os.path.exists("filenames.pkl"):
+        st.error("Error: Required files (embeddings.pkl or filenames.pkl) are missing. Please check deployment.")
+        return None, None
+
     feature_list = np.array(pickle.load(open('embeddings.pkl', 'rb')))
     filenames = pickle.load(open('filenames.pkl', 'rb'))
-    filenames = [os.path.basename(f) for f in filenames]  # Extract only filename
+    filenames = [f.replace("images\\", "").replace("images/", "") for f in filenames]
     return feature_list, filenames
 
 feature_list, filenames = load_embeddings()
+
 
 # Load ResNet50 Model
 @st.cache_resource
@@ -77,8 +82,7 @@ if uploaded_file is not None:
         st.markdown("<h2 style='text-align: center;'>Recommended Fashion Items</h2>", unsafe_allow_html=True)
         col_images = st.columns(5)
         for i, col in enumerate(col_images):
-            img_name = filenames[indices[i]]
-            cloudinary_url = CLOUDINARY_BASE_URL + img_name  # Generate Cloudinary URL
+            cloudinary_url = filenames[indices[i]]  # Directly use the Cloudinary URL
             col.image(cloudinary_url, use_container_width=True)
     else:
         st.error("No recommendations found.")
