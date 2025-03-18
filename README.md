@@ -65,7 +65,19 @@ FitTrend Recommender is a machine learning-based web application that allows use
 ### Steps to Run Locally
 1. Clone this repository:
    ```bash
-   git clone https://github.com/yourusername/fittrend-recommender.git
+   git clone https://github.com/Karangarg01/Fashion-Recommender.git
+
+2. Navigate to the project folder:
+   ```bash
+   cd Fashion-Recommender
+3. Install the required dependencies:
+   ```bash
+   pip install -r requirements.txt
+
+5. Run the Streamlit app:
+   ```bash
+   streamlit run app.py
+
 
 ---
 
