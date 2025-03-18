@@ -5,6 +5,9 @@
 
 ## AI-Powered Fashion Recommendation System
 
+![image](https://github.com/user-attachments/assets/73cd158b-39a4-4629-aced-80cc40bb02d8)
+
+
 FitTrend Recommender is a machine learning-based web application that allows users to discover similar clothing items by uploading a photo. The system uses deep learning and computer vision to analyze the uploaded image and recommend the top 5 most visually similar fashion items from a database.
 
 ---
